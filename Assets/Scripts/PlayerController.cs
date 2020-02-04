@@ -10,28 +10,28 @@ public class PlayerController : MonoBehaviour
     public Text winText;
     private Rigidbody rb;
     public float speed;
-    private Vector3 targetPos;
-    private Vector3 currPos;
+    public ItemManager itemManager;
 
     void Start()
     {
+        //itemManager = GameObject.Find("Plane").GetComponent<ItemManager>();
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
         winText.text = "";
-        targetPos = currPos = transform.position;
     }
-   void Update(){
 
-   }
-   void FixedUpdate(){
-       if(targetPos != currPos)
-        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * speed);
+   void Update(){
+       if (itemManager.listItem.Count > 0)
+       {
+            transform.position = Vector3.MoveTowards(transform.position, itemManager.listItem[0].transform.position, Time.deltaTime * speed);
+       }
    }
    void OnTriggerEnter(Collider other)
    {
       if(other.gameObject.CompareTag("Pick Up"))
       {
+          itemManager.listItem.Remove(other.gameObject);
           other.gameObject.Kill();
           count ++;
           SetCountText();
@@ -43,10 +43,5 @@ public class PlayerController : MonoBehaviour
        countText.text = "Count: " + count.ToString();
        if (count >= 12)
         winText.text = "You Win";
-   }
-   public void SetTargetPos(Vector3 pos)
-   {
-       targetPos = pos;
-       
    }
 }

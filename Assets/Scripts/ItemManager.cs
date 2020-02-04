@@ -8,9 +8,11 @@ public class ItemManager : MonoBehaviour
     public LayerMask layer;
     private PlayerController player;
     public GameObject objPlayer;
+    public List<GameObject> listItem;
     void Start()
     {
-       player = objPlayer.GetComponent<PlayerController>();
+       //player = objPlayer.GetComponent<PlayerController>();
+       listItem = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -24,8 +26,7 @@ public class ItemManager : MonoBehaviour
     
             if (Physics.Raycast (ray, out hit, 1000, layer))
             {         
-                myObject.Spawn(hit.point);
-                player.SetTargetPos(hit.point);
+                listItem.Add(myObject.Spawn(hit.point));
             }
         }
     }
