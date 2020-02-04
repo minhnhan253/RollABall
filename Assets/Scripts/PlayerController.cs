@@ -10,21 +10,23 @@ public class PlayerController : MonoBehaviour
     public Text winText;
     private Rigidbody rb;
     public float speed;
+    private Vector3 targetPos;
+    private Vector3 currPos;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
         winText.text = "";
+        targetPos = currPos = transform.position;
     }
    void Update(){
 
    }
    void FixedUpdate(){
-       float moveHorizontal = Input.GetAxis("Horizontal");
-       float moveVertical = Input.GetAxis("Vertical");
-       Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-       rb.AddForce(movement * speed);
+       if(targetPos != currPos)
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * speed);
    }
    void OnTriggerEnter(Collider other)
    {
@@ -41,5 +43,10 @@ public class PlayerController : MonoBehaviour
        countText.text = "Count: " + count.ToString();
        if (count >= 12)
         winText.text = "You Win";
+   }
+   public void SetTargetPos(Vector3 pos)
+   {
+       targetPos = pos;
+       
    }
 }

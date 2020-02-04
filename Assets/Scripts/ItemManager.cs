@@ -6,9 +6,11 @@ public class ItemManager : MonoBehaviour
 {
     public GameObject myObject;
     public LayerMask layer;
+    private PlayerController player;
+    public GameObject objPlayer;
     void Start()
     {
-        
+       player = objPlayer.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class ItemManager : MonoBehaviour
             if (Physics.Raycast (ray, out hit, 1000, layer))
             {         
                 myObject.Spawn(hit.point);
-                Debug.Log(hit.point);
+                player.SetTargetPos(hit.point);
             }
         }
     }

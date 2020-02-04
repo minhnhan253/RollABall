@@ -1886,7 +1886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countText: {fileID: 1936991380}
   winText: {fileID: 1195865470}
-  speed: 10
+  speed: 5
 --- !u!1 &1903451899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,6 +1997,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 256
+  objPlayer: {fileID: 1858589148}
 --- !u!1 &1936991378
 GameObject:
   m_ObjectHideFlags: 0
