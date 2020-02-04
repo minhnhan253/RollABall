@@ -1926,7 +1926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countText: {fileID: 1936991380}
   winText: {fileID: 1195865470}
-  speed: 1
+  speed: 5
   itemManager: {fileID: 1903451904}
 --- !u!1 &1903451899
 GameObject:
