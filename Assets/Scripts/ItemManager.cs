@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanControl : MonoBehaviour
+public class ItemManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject myObject;
     public LayerMask layer;
     void Start()
@@ -23,12 +22,9 @@ public class PlanControl : MonoBehaviour
     
             if (Physics.Raycast (ray, out hit, 1000, layer))
             {         
-                //Vector3  newPos = new Vector3(hit.point.x, 0.5f, hit.point.z);
-                //Instantiate(myObject, newPos, myObject.transform.rotation);
                 myObject.Spawn(hit.point);
                 Debug.Log(hit.point);
             }
         }
     }
-    
 }
