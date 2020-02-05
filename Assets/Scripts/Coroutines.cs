@@ -11,26 +11,24 @@ public class Coroutines : MonoBehaviour
     public InputField task2_input;
     public Text process1, process2;
     private int task1, task2;
-    private WaitForSeconds timer = new WaitForSeconds(1.0f);
+    private WaitForSeconds timer = new WaitForSeconds(0.5f);
 
     void Start()
     {
-        task1 = 0;
-        task2 = 1;   
-        
+        task1 = 10;
+        task2 = 20;  
+        process1.text = "0 / "+ task1;
+        process2.text = "0 / " + task2;
+        task1_input.text = ""+task1;
+        task2_input.text = "" + task2;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void btnParalle_Click()
     {
         task1 =  int.Parse(task1_input.text);
         task2 = int.Parse(task2_input.text);
-        //Debug.Log(task1_input.text);
         StartCoroutine(doParalelle());
         doParalelle();
     }
@@ -38,7 +36,6 @@ public class Coroutines : MonoBehaviour
     {
         task1 =  int.Parse(task1_input.text);
         task2 = int.Parse(task2_input.text);
-        //Debug.Log("btnRace_Click");
         StartCoroutine(doRace());
         doRace();
     }
