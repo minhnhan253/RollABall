@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     }
 
    void Update(){
-       if (itemManager.listItem.Count > 0)
+       if (itemManager.listItem.Count> 0)
        {
             transform.position = Vector3.MoveTowards(transform.position, itemManager.listItem[0].transform.position, Time.deltaTime * speed);
        }
