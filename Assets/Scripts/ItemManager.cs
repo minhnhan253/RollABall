@@ -26,7 +26,9 @@ public class ItemManager : MonoBehaviour
     
             if (Physics.Raycast (ray, out hit, 1000, layer))
             {   
-                GameObject obj = myObject.Spawn(hit.point);
+                Vector3 newPos = hit.point;
+                newPos.y = 0.5f;
+                GameObject obj = myObject.Spawn(newPos);
                 listItem.Add(obj);
             }
         }
