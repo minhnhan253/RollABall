@@ -11,18 +11,20 @@ public class Rotation : MonoBehaviour
         currAnimId = 0;
         animList = new string[3];
         animList.Initialize();
-        animList.SetValue("prefab_blue", 0);
-        animList.SetValue("prefab_green",1);
-        animList.SetValue("prefab_red", 2);
+        animList.SetValue("red", 0);
+        animList.SetValue("green",1);
+        animList.SetValue("blue", 2);
         anim = GetComponent<Animator>();
-        anim.Play(animList.GetValue(currAnimId).ToString());
+       anim.SetTrigger("red");
     }
     // Update is called once per frame
     void Update()
     {
+        // if (anim.GetCurrentAnimatorStateInfo(0).IsName("prefab_red"))
+        //     Debug.Log("red");
         if (!AnimatorIsPlaying())
         {
-            SetAnim();
+            TriggerAnim();
         }
     }
 
@@ -30,9 +32,9 @@ public class Rotation : MonoBehaviour
      return anim.GetCurrentAnimatorStateInfo(0).length >
             anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
     }
-    void SetAnim()
+    void TriggerAnim()
     {
         currAnimId =  (currAnimId >= animList.Length - 1) ? 0 : currAnimId+1;
-        anim.Play(animList.GetValue(currAnimId).ToString());
+        anim.SetTrigger(animList.GetValue(currAnimId).ToString());
     }
 }
