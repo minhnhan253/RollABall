@@ -8,14 +8,14 @@ public class PlayerController : MonoBehaviour
     private int count;
     public Text countText;
     public Text winText;
-    private Rigidbody rb;
+    private CapsuleCollider rb;
     public float speed;
     public ItemManager itemManager;
 
     void Start()
     {
         //itemManager = GameObject.Find("Plane").GetComponent<ItemManager>();
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<CapsuleCollider>();
         count = 0;
         SetCountText();
         winText.text = "";
