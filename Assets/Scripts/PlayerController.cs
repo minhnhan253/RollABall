@@ -27,8 +27,10 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, itemManager.listItem[0].transform.position, Time.deltaTime * speed);
        }
    }
-   void OnTriggerEnter(Collider other)
+    void OnCollisionEnter (Collision other)
+   //void OnTriggerEnter(Collider other)
    {
+      Debug.Log("Trigger Collision");
       if(other.gameObject.CompareTag("Pick Up"))
       {
         itemManager.listItem.Remove(other.gameObject);

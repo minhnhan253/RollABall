@@ -24,7 +24,7 @@ public class ItemManager : MonoBehaviour
  
             RaycastHit hit = new RaycastHit();
     
-            if (Physics.Raycast (ray, out hit, 1000, layer))
+            if (Physics.Raycast (ray, out hit))
             {   
                 Vector3 newPos = hit.point;
                 newPos.y = 0.5f;
