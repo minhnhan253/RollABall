@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private CapsuleCollider rb;
     public float speed;
     public ItemManager itemManager;
+    private bool isshow = true;
 
     void Start()
     {
@@ -19,14 +20,26 @@ public class PlayerController : MonoBehaviour
         count = 0;
         SetCountText();
         winText.text = "";
+        //Debug.Log(itemManager.listItem[0].transform.position);
+        Debug.Log("Next");
     }
 
    void Update(){
-       if (itemManager.listItem.Count> 0)
-       {
+        if (itemManager.listItem.Count > 0)
+        {
             transform.position = Vector3.MoveTowards(transform.position, itemManager.listItem[0].transform.position, Time.deltaTime * speed);
-       }
-   }
+            
+            rb.transform.position = transform.position;// (itemManager.listItem[0].transform.position);
+            
+            if (transform.position == itemManager.listItem[0].transform.position && isshow)
+            {
+                Debug.Log(rb.transform.position);
+                Debug.Log(itemManager.listItem[0].transform.position);
+                isshow = !isshow;
+            }
+
+        }
+    }
     void OnCollisionEnter (Collision other)
    //void OnTriggerEnter(Collider other)
    {
