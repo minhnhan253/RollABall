@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
         itemManager.listItem.Remove(other.gameObject);
         count ++;
         SetCountText();
+        other.gameObject.GetComponent<ParticleSystem>().Stop();
         other.gameObject.Kill();
       }
 

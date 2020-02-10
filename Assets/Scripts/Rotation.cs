@@ -16,6 +16,7 @@ public class Rotation : MonoBehaviour
         animList.SetValue("blue", 2);
         anim = GetComponent<Animator>();
        anim.SetTrigger("red");
+        GetComponent<ParticleSystem>().Stop();
     }
     // Update is called once per frame
     void Update()
