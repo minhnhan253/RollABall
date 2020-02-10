@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
    void Update(){
         if (itemManager.listItem.Count > 0)
         {
+            transform.LookAt(itemManager.listItem[0].transform.position, Vector3.up);
             transform.position = Vector3.MoveTowards(transform.position, itemManager.listItem[0].transform.position, Time.deltaTime * speed);
             
            collider.transform.position = transform.position;// (itemManager.listItem[0].transform.position);
