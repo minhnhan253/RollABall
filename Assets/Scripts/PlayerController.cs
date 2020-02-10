@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     private CapsuleCollider collider;
     public float speed;
     public ItemManager itemManager;
-    private bool isshow = true;
+    private bool isPlayedAnim = false;
+    private Animator animator;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         winText.text = "";
         //Debug.Log(itemManager.listItem[0].transform.position);
         Debug.Log("Next");
+        animator = GetComponent<Animator>();
     }
 
    void Update(){
@@ -32,11 +34,13 @@ public class PlayerController : MonoBehaviour
             
            collider.transform.position = transform.position;// (itemManager.listItem[0].transform.position);
             
-            if (transform.position == itemManager.listItem[0].transform.position && isshow)
+            if (!isPlayedAnim)
             {
                 //Debug.Log(rb.transform.position);
                 //Debug.Log(itemManager.listItem[0].transform.position);
-                isshow = !isshow;
+                
+                animator.SetTrigger("walking");
+                isPlayedAnim = true;
             }
 
         }
@@ -45,6 +49,8 @@ public class PlayerController : MonoBehaviour
    void OnTriggerEnter(Collider other)
    {
       Debug.Log("Trigger Collision");
+      isPlayedAnim = false;
+      animator.SetTrigger("idle");
       if(other.gameObject.CompareTag("Pick Up"))
       {
         itemManager.listItem.Remove(other.gameObject);
@@ -60,14 +66,4 @@ public class PlayerController : MonoBehaviour
        if (count >= 12)
         winText.text = "You Win";
    }
-   public AnimationClip GetAnimationClip(Animator anim, string name) {
-    if (!anim) return null; // no animator
- 
-    for (int i = 0; i < anim.runtimeAnimatorController.animationClips.Length; i++)
-    {
-        if (anim.runtimeAnimatorController.animationClips [i].name == name)
-            return anim.runtimeAnimatorController.animationClips [i];
-    }
-    return null; // no clip by that name
- }
 }
