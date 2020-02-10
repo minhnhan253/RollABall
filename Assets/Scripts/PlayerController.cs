@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
             transform.LookAt(itemManager.listItem[0].transform.position, Vector3.up);
             transform.position = Vector3.MoveTowards(transform.position, itemManager.listItem[0].transform.position, Time.deltaTime * speed);
             
-           collider.transform.position = transform.position;// (itemManager.listItem[0].transform.position);
+           //collider.transform.position = transform.position;// (itemManager.listItem[0].transform.position);
             
             if (!isPlayedAnim)
             {
