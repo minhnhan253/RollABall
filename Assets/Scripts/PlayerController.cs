@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private int count;
     public Text countText;
     public Text winText;
-    private CapsuleCollider rb;
+    private CapsuleCollider collider;
     public float speed;
     public ItemManager itemManager;
     private bool isshow = true;
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //itemManager = GameObject.Find("Plane").GetComponent<ItemManager>();
-        rb = GetComponent<CapsuleCollider>();
+        collider = GetComponent<CapsuleCollider>();
         count = 0;
         SetCountText();
         winText.text = "";
@@ -29,45 +29,45 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, itemManager.listItem[0].transform.position, Time.deltaTime * speed);
             
-            rb.transform.position = transform.position;// (itemManager.listItem[0].transform.position);
+           collider.transform.position = transform.position;// (itemManager.listItem[0].transform.position);
             
             if (transform.position == itemManager.listItem[0].transform.position && isshow)
             {
-                Debug.Log(rb.transform.position);
-                Debug.Log(itemManager.listItem[0].transform.position);
+                //Debug.Log(rb.transform.position);
+                //Debug.Log(itemManager.listItem[0].transform.position);
                 isshow = !isshow;
             }
 
         }
     }
-    void OnCollisionEnter (Collision other)
-   //void OnTriggerEnter(Collider other)
+    //void OnCollisionEnter (Collision other)
+   void OnTriggerEnter(Collider other)
    {
       Debug.Log("Trigger Collision");
       if(other.gameObject.CompareTag("Pick Up"))
       {
         itemManager.listItem.Remove(other.gameObject);
         
-        Animator anim = other.gameObject.GetComponent<Animator>();
+        // Animator anim = other.gameObject.GetComponent<Animator>();
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("prefab_red"))
-        {
-            GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
-            Debug.Log("red");
-        }
-        else
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("prefab_green"))
-        {
-            Debug.Log("green");
-            GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
-        }
+        // if (anim.GetCurrentAnimatorStateInfo(0).IsName("prefab_red"))
+        // {
+        //     GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
+        //     Debug.Log("red");
+        // }
+        // else
+        // if (anim.GetCurrentAnimatorStateInfo(0).IsName("prefab_green"))
+        // {
+        //     Debug.Log("green");
+        //     GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
+        // }
             
-        else
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("prefab_blue"))
-        {
-            Debug.Log("blue");
-            GetComponent<Renderer>().material.color = new Color(0, 0, 1, 1);
-        }
+        // else
+        // if (anim.GetCurrentAnimatorStateInfo(0).IsName("prefab_blue"))
+        // {
+        //     Debug.Log("blue");
+        //     GetComponent<Renderer>().material.color = new Color(0, 0, 1, 1);
+        // }
             
           count ++;
           SetCountText();
