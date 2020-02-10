@@ -13,11 +13,14 @@ public class PlayerController : MonoBehaviour
     public ItemManager itemManager;
     private bool isPlayedAnim = false;
     private Animator animator;
-
+    
+   // [Header("Unity Setup")]
+    public ParticleSystem deadParticle;
     void Start()
     {
         //itemManager = GameObject.Find("Plane").GetComponent<ItemManager>();
         collider = GetComponent<CapsuleCollider>();
+        //deadParticle = GetComponent<ParticleSystem>();
         count = 0;
         SetCountText();
         winText.text = "";
@@ -51,6 +54,9 @@ public class PlayerController : MonoBehaviour
       Debug.Log("Trigger Collision");
       isPlayedAnim = false;
       animator.SetTrigger("idle");
+      //Instantiate(deadParticle, transform.position,Quaternion.identity);
+      deadParticle.Play();
+      
       if(other.gameObject.CompareTag("Pick Up"))
       {
         itemManager.listItem.Remove(other.gameObject);
