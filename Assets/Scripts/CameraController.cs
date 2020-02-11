@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += 0.1f*Time.deltaTime;
+        time += 0.5f*Time.deltaTime;
         //if (Input.GetKeyUp(KeyCode.Space))
         {   
             movingCamera.transform.position = Vector3.Lerp(camera1.transform.position, camera2.transform.position, time);
