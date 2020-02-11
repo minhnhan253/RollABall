@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rotation : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     private Animator anim;
     private string[] animList;
@@ -16,13 +16,11 @@ public class Rotation : MonoBehaviour
         animList.SetValue("blue", 2);
         anim = GetComponent<Animator>();
        anim.SetTrigger("red");
-        GetComponent<ParticleSystem>().Stop();
+        
     }
     // Update is called once per frame
     void Update()
     {
-        // if (anim.GetCurrentAnimatorStateInfo(0).IsName("prefab_red"))
-        //     Debug.Log("red");
         if (!AnimatorIsPlaying())
         {
             TriggerAnim();

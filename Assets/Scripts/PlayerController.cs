@@ -54,15 +54,14 @@ public class PlayerController : MonoBehaviour
       Debug.Log("Trigger Collision");
       isPlayedAnim = false;
       animator.SetTrigger("idle");
-      //Instantiate(deadParticle, transform.position,Quaternion.identity);
+      Instantiate(deadParticle, transform.position, Quaternion.identity);
       deadParticle.Play();
       
       if(other.gameObject.CompareTag("Pick Up"))
       {
         itemManager.listItem.Remove(other.gameObject);
         count ++;
-        SetCountText();
-        other.gameObject.GetComponent<ParticleSystem>().Stop();
+        SetCountText();     
         other.gameObject.Kill();
       }
 
